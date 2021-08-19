@@ -1,0 +1,47 @@
+.palette-brief {
+	width: 28%;
+	border: 1px solid #eaeaea;
+	padding: 7.5px;
+	margin: 0 7.5px 7.5px;
+
+	.title-line {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #f4f4f4;
+			
+		.actions {
+			span {
+				margin-left: 7.5px;
+			}
+		}
+		
+		span { cursor: pointer; }
+
+		.title {
+			font-weight: bold;			
+		}
+	}
+
+	.colors {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 20px);
+		// margin-top: 15px;
+		.color {
+			height: 20px;
+		}
+	}
+
+	@media screen and ( max-width: 700px ) {
+		& {
+			width: 80%;
+			margin: auto;
+			margin-bottom: 15px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

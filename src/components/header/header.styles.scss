@@ -1,0 +1,33 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 64px;
+	margin-bottom: 40px;
+
+	.brand {
+		width: 30%;
+		text-transform: capitalize;
+		cursor: pointer;
+	}
+
+	.menu {
+		font-size: small;
+		text-transform: uppercase;
+
+		width: 80%;
+
+		display: flex;
+		justify-content: flex-end;
+
+		.menu-item {
+			margin: 0 10px;
+			cursor: pointer;
+			
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}

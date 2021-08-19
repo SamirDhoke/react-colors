@@ -1,0 +1,3 @@
+export default {
+	SET_ACTIVE_PALETTE: 'SET_ACTIVE_PALETTE'
+}

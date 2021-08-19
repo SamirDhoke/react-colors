@@ -1,0 +1,26 @@
+.color-box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 120px;
+
+	.color-bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+	}
+
+	.color-name {
+		position: absolute;
+		left: 0;
+		top: 0;
+		color: lighten(black, 50%);
+		text-transform: uppercase;
+		font-size: small;				
+	}			
+}

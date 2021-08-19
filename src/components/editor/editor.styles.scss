@@ -1,0 +1,22 @@
+.config {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-bottom: 15px;
+}
+
+.editing-space {
+	display: grid;
+	grid-template-columns: 30% 70%;
+
+	.color-picker {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.colors {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);		
+	}
+}

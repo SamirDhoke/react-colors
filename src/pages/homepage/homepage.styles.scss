@@ -1,0 +1,15 @@
+.homepage {
+	.palettes {
+		width: 80%;
+		margin: auto;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	@media screen and ( max-width: 700px ) {
+		.palettes {
+			width: 100%;
+			flex-direction: column;
+		}
+	}
+}

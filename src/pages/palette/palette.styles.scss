@@ -1,0 +1,21 @@
+.palette {
+	.config {
+		display: flex;		
+		justify-content: space-between;
+
+		.config-item {
+			display: flex;			
+			align-items: center;
+
+			span {
+				margin-right: 7.5px;
+			}
+		}
+	}
+
+	.colors {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 120px;
+	}
+}

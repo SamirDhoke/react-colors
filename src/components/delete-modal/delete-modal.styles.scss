@@ -1,0 +1,32 @@
+.delete-modal-content {
+	h2 {
+		margin: 0px 0 15px 0;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #f4f4f4;
+	}
+
+	display: flex;
+	flex-direction: column;
+
+	form {
+		.form-control {
+			display: flex;
+			flex-direction: column;
+			margin: 10px 0;
+
+			label {
+				font-size: small;
+				color: lighten(black, 50%);
+				margin-bottom: 10px;
+			}
+
+			&.form-actions {
+				flex-direction: row;
+
+				button {
+					margin-right: 10px;
+				}				
+			}
+		}
+	}
+}

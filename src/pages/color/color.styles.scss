@@ -1,0 +1,52 @@
+.color {
+	.config {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.config-item {
+			display: flex;
+			align-items: center;
+
+			span {
+				text-transform: capitalize;
+				margin-right: 7.5px;
+			}
+		}
+	}
+
+	.title {
+		text-transform: uppercase;
+	}
+
+	.palette {
+		display: flex;
+		flex-wrap: wrap;
+
+		.color-shade {
+			width: 20%;
+			height: 240px;
+			position: relative;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.bg {
+				position: absolute;
+				z-index: -1;
+				height: 100%;
+				width: 100%;
+			}
+
+			.name {
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: smaller;
+				text-transform: uppercase;
+				color: lighten(black, 50%);
+			}
+		}
+	}
+}
