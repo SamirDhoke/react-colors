@@ -1,6 +1,11 @@
 import TYPES from './palettes.types';
 import { v4 as uuid } from 'uuid';
 
+export const setActivePalette = palette => ({
+	type: TYPES.SET_ACTIVE_PALETTE,
+	payload: palette
+})
+
 export const setDeletingPalette = palette => ({
 	type: TYPES.SET_DELETING_PALETTE,
 	payload: palette

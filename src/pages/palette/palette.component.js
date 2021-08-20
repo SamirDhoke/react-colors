@@ -1,10 +1,10 @@
 import React from 'react';
-import { selectActivePalette } from '../../redux/viewer/viewer.selectors';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import ColorBox from '../../components/color-box/color-box.component';
 import SliderInput from '../../components/slider-input/slider-input.component';
 import SelectInput from '../../components/select-input/select-input.component';
+import { selectActivePalette } from '../../redux/palettes/palettes.selectors';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import './palette.styles.scss';
 
 const Palette = props => {
@@ -20,7 +20,7 @@ const Palette = props => {
 	const handleChange = (name, value) => updateConfig({ ...config, [name] : value });
 
 	if (!palette) {
-		return <Redirect to='/' />;
+		return null;
 	}
 
 	const {

@@ -1,31 +1,38 @@
 import React from 'react';
 import Modal from '../modal/modal.component';
 import CustomButton from '../custom-button/custom-button.component';
+import { selectIsModalOpen, selectActivePalette } from '../../redux/editor/editor.selectors';
+import { toggleSaveModal, resetEditingPalette } from '../../redux/editor/editor.actions';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './save-modal.styles.scss';
 
 const SaveModal = props => {
 	const {
 		open,
-		handleClose,
-		paletteName,
-		...rest
+		palette		
 	} = props;
 
-	const [title, updateTitle] = React.useState(paletteName || '');
+	const [title, updateTitle] = React.useState(palette ? palette.title : '');
 	
 	const handleSubmit = e => {
 		e.preventDefault();
 		try {
-			rest.handleSave({ title });
+			props.save({ title });
 		} catch (e) {
 			alert(e.message);
 		}		
 	}
 
+	const handleCancel = e => {
+		props.reset();
+		props.history.goBack();
+	}
+
 	return (
 		<Modal
       open={open}
-      handleClose={handleClose}
+      handleClose={props.toggleOpen}
       >
       <div className='save-modal-content'>
       	<h2>Finish this last step</h2>
@@ -42,7 +49,7 @@ const SaveModal = props => {
 					</div>
 					<div className='form-control form-actions'>
 						<CustomButton type='submit'>save</CustomButton>
-						<CustomButton type='button' onClick={props.handleClose}>drop</CustomButton>
+						<CustomButton type='button' onClick={handleCancel}>drop</CustomButton>
 					</div>
 				</form>
       </div>
@@ -50,4 +57,16 @@ const SaveModal = props => {
 	)
 }
 
-export default SaveModal;
+const mapStateToProps = state => ({
+	open: selectIsModalOpen(state),
+	palette: selectActivePalette(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+	toggleOpen: () => dispatch( toggleSaveModal() ),
+	reset: () => dispatch( resetEditingPalette() )
+})
+
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(SaveModal)
+);

@@ -1,47 +1,55 @@
 import React from 'react';
 import Modal from '../modal/modal.component';
 import CustomButton from '../custom-button/custom-button.component';
+import { toggleDeleteModal, deletePalette, resetDeletingPalette } from '../../redux/palettes/palettes.actions';
+import { selectIsModalOpen, selectDeletingPalette } from '../../redux/palettes/palettes.selectors';
+import { connect } from 'react-redux';
 import './delete-modal.styles.scss';
 
+
 const DeleteModal = props => {
-	const {
-		open,
-		handleClose,
-		paletteName,
-		...rest
-	} = props;
+	const { open, paletteName } = props;
 
 	const [title, updateTitle] = React.useState('');
 	
 	const handleSubmit = e => {
 		e.preventDefault();
-		if (title.toLowerCase() !== paletteName.toLowerCase()) {
+		console.log(title, props.palette.title);
+		if (title.toLowerCase() !== props.palette.title.toLowerCase()) {
 			alert('the input does not matches the palette name.');
 			return;
 		}
-		rest.deletePalette()
+		props.delete(props.palette);
+		props.toggleOpen();
 		updateTitle('');
+	}
+
+	const handleCancel = e => {
+		props.toggleOpen();
+		props.reset();
 	}
 
 	return (
 		<Modal
       open={open}
-      handleClose={handleClose}
+      handleClose={props.toggleOpen}
       >
       <div className='delete-modal-content'>
       	<h2>Are you sure ?</h2>
         <form onSubmit={ handleSubmit }>
           <div className='form-control'>
-            <label>Enter the palette name <b>{ paletteName }</b> to continue</label>
+            <label>Enter the palette name <b>{ props.palette ? props.palette.title : '' }</b> to continue</label>
             <input
               type='text'
               name='title'
               placeholder='palette name'
+              value={title}
+              onChange={({target}) => updateTitle(target.value)}
               />
           </div>
           <div className='form-control form-actions'>
-          	<CustomButton>Delete</CustomButton>
-          	<CustomButton>Cancel</CustomButton>
+          	<CustomButton type='submit'>Delete</CustomButton>
+          	<CustomButton type='button' onClick={ handleCancel }>Cancel</CustomButton>
           </div>          
         </form>
       </div>
@@ -49,4 +57,15 @@ const DeleteModal = props => {
 	)
 }
 
-export default DeleteModal;
+const mapStateToProps = state => ({
+	open: selectIsModalOpen(state),
+	palette: selectDeletingPalette(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+	toggleOpen: () => dispatch( toggleDeleteModal() ),
+	delete : palette => dispatch( deletePalette(palette) ),
+	reset: () => dispatch( resetDeletingPalette() )
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteModal);

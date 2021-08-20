@@ -1,5 +1,7 @@
-import { generatePalette, convertColorsMapToArray } from '../../utils';
 import React from 'react';
+import SelectInput from '../../components/select-input/select-input.component';
+import ColorBox from '../../components/color-box/color-box.component';
+import { generatePalette, convertColorsMapToArray } from '../../utils';
 import { selectAllColors } from '../../redux/palettes/palettes.selectors';
 import { connect } from 'react-redux';
 import './color.styles.scss';
@@ -32,23 +34,28 @@ const Color = props => {
 				<div className='config-item'>
 					<h3 className='title'>{palette.name}</h3>
 				</div>
-				<div className='config-item'>
-					<span>display mode</span>
-					<select name='mode' onChange={ ({target}) => updateMode(target.value) }>
-						<option value='rgb'>rgb</option>
-						<option value='rgba'>rgba</option>
-						<option value='hex'>hex</option>
-					</select>
-				</div>
+				<SelectInput
+					className='config-item'					
+					value={mode}
+					onChange={ ({target}) => updateMode(target.value) }
+					name='mode'
+					options={{
+						hex: 'hex',
+						rgb: 'rgb',
+						rgba: 'rgba'
+					}}					
+				/>
 			</div>			
 			<div className='palette'>
 				{
 					palette.colors.map(
 						color => (
-							<div key={color.color} className='color-shade'>
-								<div className='bg' style={{ backgroundColor: `${color.color}` }}/>								
-								<span className='code'>{ color[mode] }</span>
-							</div>
+							<ColorBox 
+								key={color.color} 
+								color={color} 
+								singleColor={true} 
+								mode={mode}
+								/>
 						)
 					)
 				}

@@ -14,10 +14,4 @@ export const selectAllColors = state => {
 }
 export const selectDeletingPalette = state => selectPalettesStore(state).deletingPalette;
 export const selectNewPaletteTemplate = state => selectPalettes(state)[0];
-export const selectPaletteNames = state => {
-	return selectPalettes(state)
-		.map(p => ({
-			title: p.title,
-			id: p.id
-		}));
-}
+export const selectActivePalette = state => selectPalettesStore(state).activePalette;

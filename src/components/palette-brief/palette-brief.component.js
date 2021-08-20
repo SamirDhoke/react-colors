@@ -1,4 +1,4 @@
-import { setActivePalette } from '../../redux/viewer/viewer.actions';
+import { setActivePalette } from '../../redux/palettes/palettes.actions';
 import { setEditingPalette } from '../../redux/editor/editor.actions';
 import { setDeletingPalette, toggleDeleteModal } from '../../redux/palettes/palettes.actions';
 
@@ -40,21 +40,11 @@ const PaletteBrief = props => {
 
   return (
     <div className='palette-brief'>
-      <div className='title-line'>
+      <div className='title-wrapper'>
         <span 
           className='title'
           onClick={ viewPalette }
-          >{title}</span>
-        <div className='actions'>
-          <span 
-            className='edit' 
-            onClick={ editPalette }
-            ><FontAwesomeIcon icon={faEdit} /></span>
-          <span 
-            className='delete'
-            onClick={deletePalette}
-            ><FontAwesomeIcon icon={faTrash} /></span>
-        </div>
+          >{title}</span>        
       </div>      
       <div className='colors'>
         {
@@ -68,6 +58,16 @@ const PaletteBrief = props => {
             )
           )
         }        
+      </div>
+      <div className='actions'>
+        <span 
+          className='edit' 
+          onClick={ editPalette }
+          >edit</span>
+        <span 
+          className='delete'
+          onClick={deletePalette}
+          >delete</span>
       </div>
     </div>
   );

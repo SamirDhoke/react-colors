@@ -1,36 +1,32 @@
 import Editor from '../../components/editor/editor.component';
 import { updatePalette } from '../../redux/palettes/palettes.actions';
-import { selectPaletteNames } from '../../redux/palettes/palettes.selectors';
+import { selectPalettes } from '../../redux/palettes/palettes.selectors';
 import { connect } from 'react-redux';
 
 const EditPalette = props => {
-	const { existingNames } = props;
+	const { palettes } = props;
 
-	const handleSave = data => {
-		// console.log('reached in the handle save of new palette.')
+	const save = data => {		
 		const { title, id } = data;
-		const existing = existingNames.find(
-			en => en.id !== id && en.title.toLowerCase() === title.toLowerCase()
-		);
-		// console.log(existing);
+		const existing = palettes.find(palette => palette.title === title && palette.id !== id);		
 		if ( existing ) {
 			throw new Error('This name is already taken. Please select a different name.');
 		}
-		props.updatePalette(data);
-		props.history.push('/');
+		props.update(data);
+		props.history.goBack();
 	}
 
 	return (
-		<Editor save={handleSave}/>
+		<Editor save={save}/>
 	);
 }
 
 const mapStateToProps = state => ({
-	existingNames : selectPaletteNames(state),
+	palettes : selectPalettes(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-	updatePalette: palette => dispatch( updatePalette(palette) )
+	update: palette => dispatch( updatePalette(palette) )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPalette);
