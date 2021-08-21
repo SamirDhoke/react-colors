@@ -13,7 +13,7 @@ const Palette = props => {
 	const [ config, updateConfig ] = React.useState({
 		level: 50,
 		mode: 'rgb'
-	});	
+	});
 
 	const handleLevelChange = ({target}) => handleChange('level', Number(target.value) <= 0 ? 50 : Number(target.value));
 	const handleModeChange = ({target}) => handleChange('mode', target.value);
@@ -29,31 +29,34 @@ const Palette = props => {
 	} = palette;
 
 	return (		
-		<div className='palette'>
-			<div className='config'>
-				<SliderInput
-					classname='config-item'
-					value={config.level}
-					onChange={handleLevelChange}
-					min={0}
-					max={900}
-					step={100}
-					label='Level'
-					name='level'
-					/>
-				<SelectInput
-					className='config-item'
-					name='mode'
-					value={config.mode}
-					onChange={handleModeChange}
-					options={{
-						rgb: 'rgb',
-						rgba: 'rgba',
-						hex: 'hex'
-					}}
-					/>
-			</div>
-			<h2 className='title'>{title}</h2>			
+		<div className='palette'>			
+			<div className='head'>
+				<span className='title'>{title}</span>
+				<div className='config'>
+					<SliderInput
+						classname='config-item'
+						value={config.level}
+						onChange={handleLevelChange}
+						min={0}
+						max={900}
+						step={100}
+						label='Level'
+						name='level'
+						/>
+					<SelectInput
+						className='config-item'
+						name='mode'
+						label='mode'
+						value={config.mode}
+						onChange={handleModeChange}
+						options={{
+							rgb: 'rgb',
+							rgba: 'rgba',
+							hex: 'hex'
+						}}
+						/>
+				</div>			
+			</div>			
 			<div className='colors'>
 				{ 
 					colors[config.level].map( color => (
@@ -62,6 +65,7 @@ const Palette = props => {
 							color={color} 
 							mode={config.mode} 
 							push={props.history.push}
+							editable
 							/> ) 
 					)
 				}

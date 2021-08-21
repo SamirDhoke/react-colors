@@ -16,14 +16,22 @@ export const selectRandomColor = (superset, subset) => {
 		SUPERSET: set of all colors
 		SUBSET: set of colors of current palette
 	*/
+	let counter = 0;
 	let index = Math.floor( Math.random() * superset.length );
 	let random =  superset[index];
 	let exists = subset.find( c => c.name === random.name );
-	while ( exists ) {
+	
+	while ( exists && counter < 100 ) {
 		index = Math.floor( Math.random() * superset.length );
 		random =  superset[index];
 		exists = subset.find( c => c.name === random.name );
+		counter = counter + 1;
 	}
+	
+	if (exists && counter >= 100) {
+		throw new Error('iteration count reached upper limit.');
+	}
+
 	return random;
 }
 

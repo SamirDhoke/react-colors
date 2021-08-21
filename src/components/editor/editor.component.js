@@ -2,7 +2,7 @@ import SaveModal from '../save-modal/save-modal.component';
 import ColorBox from '../color-box/color-box.component';
 import CustomButton from '../custom-button/custom-button.component';
 import ColorPicker from '../color-picker/color-picker.component';
-import { resetEditingPalette, toggleSaveModal } from '../../redux/editor/editor.actions';
+import { resetEditingPalette, toggleSaveModal, removeColorFromPalette } from '../../redux/editor/editor.actions';
 import { selectActivePalette	} from '../../redux/editor/editor.selectors';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Editor = props => {
 		<div className='editor'>
 			<div className='config'>
 				<div className='config-item'>
-					<h2>{palette.title}</h2>
+					<span className='title'>Design your palette</span>
 				</div>
 				<div className='config-item'>
 					<CustomButton onClick={props.toggleOpen}>save</CustomButton>
@@ -41,7 +41,18 @@ const Editor = props => {
 			<div className='editing-space'>
 				<ColorPicker />
 				<div className='colors'>
-					{ palette.colors.map( color => <ColorBox key={color.name} color={color}/> ) }
+					{ 
+						palette.colors.map( 
+							color => (
+								<ColorBox 
+									key={color.name} 
+									color={color}
+									deleteColor={props.deleteColor}
+									deletable
+									/>
+							)
+						) 
+					}
 				</div>
 			</div>
 			<SaveModal save={save}/>
@@ -55,7 +66,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({	
 	reset: () => dispatch( resetEditingPalette() ),
-	toggleOpen: () => dispatch( toggleSaveModal() )
+	toggleOpen: () => dispatch( toggleSaveModal() ),
+	deleteColor: color => dispatch( removeColorFromPalette(color) )
 })
 
 export default withRouter(

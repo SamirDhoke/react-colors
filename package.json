@@ -19,6 +19,8 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-filter": "^0.0.20",
     "sass": "^1.37.5",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"

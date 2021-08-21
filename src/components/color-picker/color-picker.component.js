@@ -7,6 +7,7 @@ import { selectActivePalette } from '../../redux/editor/editor.selectors';
 import { selectAllColors } from '../../redux/palettes/palettes.selectors';
 import { selectRandomColor } from '../../utils';
 import { connect } from 'react-redux';
+import './color-picker.styles.scss';
 
 const ColorPicker = props => {
 	const [color, setColor] = React.useState({
@@ -37,36 +38,38 @@ const ColorPicker = props => {
 	}
 
 	const addRandomColor = e => {
-		const random = selectRandomColor(props.allColors, props.palette.colors);
-		props.addColor(random);
+		try {
+			const random = selectRandomColor(props.allColors, props.palette.colors);
+			props.addColor(random);
+		}	catch (e) {
+			alert('no more colors choices left.')
+		}	
 	}
 
 	return (
 		<div className='color-picker'>
-			<div className='smaller-buttons'>
+			<div className='action-buttons'>
 				<CustomButton onClick={props.clear}>clear</CustomButton>
 				<CustomButton onClick={addRandomColor}>random</CustomButton>						
-			</div>
-			<div className='color-picker-component'>
-				<form onSubmit={ handleSubmit }>
-					<div className='form-control'>
-						<HexColorPicker 
-							color={color.code}
-							onChange={(value) => setColor({ ...color, code: value })}
-						/>
-					</div>
-					<div className='form-control'>
-						<input 
-							value={color.name}
-							onChange={({target}) => setColor({ ...color, name: target.value })}
-							name='name'
-							placeholder='e.g. smokewhite'
-							required
-						/>
-					</div>
-					<CustomButton type='submit'>Add</CustomButton>
-				</form>
-			</div>
+			</div>			
+			<form onSubmit={ handleSubmit }>
+				<div className='form-control'>
+					<HexColorPicker 
+						color={color.code}
+						onChange={(value) => setColor({ ...color, code: value })}
+					/>
+				</div>
+				<div className='form-control'>
+					<input 
+						value={color.name}
+						onChange={({target}) => setColor({ ...color, name: target.value })}
+						name='name'
+						placeholder='e.g. smokewhite'
+						required
+					/>
+				</div>
+				<CustomButton type='submit'>Add</CustomButton>
+			</form>			
 		</div>
 	)
 }

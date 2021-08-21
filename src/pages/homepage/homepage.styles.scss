@@ -1,9 +1,22 @@
 .homepage {
-	.palettes {
-		width: 80%;
-		margin: auto;
-		display: flex;
-		flex-wrap: wrap;
+
+	.bg {
+		background-image: url('/assets/bg.svg');
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+	}
+
+	.palettes-container {
+		.palettes {
+			width: 80%;
+			margin: auto;
+			display: flex;
+			flex-wrap: wrap;
+		}		
 	}
 
 	@media screen and ( max-width: 700px ) {

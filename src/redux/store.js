@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
+import { persistStore } from 'redux-persist';
 import logger from 'redux-logger';
+import persistedReducer from './root-reducer';
 
-import reducer from './root-reducer';
+export const store = createStore(persistedReducer, applyMiddleware( logger ));
 
-const store = createStore(reducer, applyMiddleware( logger ));
-
-export default store;
+export default persistStore(store);

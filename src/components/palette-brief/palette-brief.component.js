@@ -51,7 +51,7 @@ const PaletteBrief = props => {
           colors.map(
             color => (
               <span 
-                key={color.id}
+                key={color.name}
                 className='color'
                 style={{ backgroundColor: color.color }}
               />

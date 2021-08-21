@@ -1,21 +1,35 @@
-.palette {
-	.config {
-		display: flex;		
+.palette {		
+	.head {
+		display: flex;
+		flex-direction: column;
+		margin: 30px 0;
 		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 60px;
+		
+		.title {
+			font-size: xx-large;
+			text-transform: uppercase;
+			margin-bottom: 20px;
+		}
 
-		.config-item {
-			display: flex;			
-			align-items: center;
+		.config {
+			width: 50%;
 
-			span {
-				margin-right: 7.5px;
+			display: flex;		
+			justify-content: space-between;
+
+			.config-item {
+				display: flex;			
+				align-items: center;
+				margin-left: 15px;				
 			}
 		}
-	}
+	}	
 
 	.colors {
 		display: grid;
-		grid-template-columns: repeat(7, 1fr);
+		grid-template-columns: repeat(6, 1fr);
 		grid-gap: 10px;
 	}
 }

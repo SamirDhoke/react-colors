@@ -1,7 +1,6 @@
 import './App.scss';
 import Homepage from './pages/homepage/homepage.component';
 import Palette from './pages/palette/palette.component';
-import Header from './components/header/header.component';
 import Color from './pages/color/color.component';
 import NewPalette from './pages/new-palette/new-palette.component';
 import EditPalette from './pages/edit-palette/edit-palette.component';
@@ -10,8 +9,7 @@ import { Switch, Route } from 'react-router-dom';
 
 const App = props => {
   return (
-    <div className="App">
-      <Header />  
+    <div className="App">      
       <Switch>        
         <Route 
           path='/palettes/view/:id' 

@@ -1,9 +1,11 @@
+import './slider-input.styles.scss';
+
 const SliderInput = props => {
 	const { classname, label, value, ...rest } = props;
 
 	return (
 		<div className={`slider-input ${classname}`}>
-			<span>{ label } ({ value })</span>
+			<label>{ label } ({ value })</label>
 			<input 
 				value={value} 
 				type='range' 

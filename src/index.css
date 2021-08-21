@@ -1,7 +1,12 @@
 body {
   margin: 0;
   font-family: sans-serif;    
-  background-color: rgb(231,239,244);
+  /*
+  #C6EA8D → #FE90AF cactus
+  #EE9CA7 → #FFDDE1 piglet
+  */
+  /*background-image: linear-gradient(to left, #FFDDE1, );*/
+  /*background-color: #FFDDE1;*/
 }
 
 code {

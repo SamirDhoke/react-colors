@@ -3,16 +3,23 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './color-box.styles.scss';
 
 const ColorBox = props => {
-	const { color, mode='color', singleColor=false } = props;
+	const { color, mode='color', singleColor=false, editable=false, deletable=false } = props;
 	
 	const [ copied, updateCopied ] = React.useState(false);
 	
 	const goToColor = e => {
+		e.stopPropagation();
 		props.push(`/colors/${color.name}`);
+	}
+
+	const deleteColor = e => {
+		e.stopPropagation();
+		props.deleteColor(color);
 	}
 	
 	React.useEffect(() => {
 		if (copied) {
+			console.log('copied')
 			setTimeout(() => updateCopied(false), 1500);
 		}
 	}, [copied]);
@@ -37,15 +44,15 @@ const ColorBox = props => {
 				</div>				
 				<div className='color-actions'>
 					{
-						!singleColor && <span 
+						editable && <span 
 							className='view'
 							onClick={ goToColor }
 						>view</span>
 					}
 					{
-						!singleColor && <span 
+						deletable && <span 
 							className='delete'
-							onClick={ e => {} }
+							onClick={ deleteColor }
 						>delete</span>
 					}
 				</div>				

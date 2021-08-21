@@ -1,6 +1,8 @@
+import './select-input.styles.scss';
+
 const SelectInput = props => {
 	const { 
-		classname,
+		className,
 		label,
 		name,
 		options,
@@ -8,8 +10,8 @@ const SelectInput = props => {
 	} = props;
 
 	return (
-		<div className={`select-input ${classname}`}>
-			<span>{ label }</span>
+		<div className={`select-input ${className}`}>
+			<label>{ label }</label>
 			<select name={name} {...rest} >
 				{ Object.keys(options).map(key => <option key={key} name={name} value={options[key]}>{key}</option>) }
 			</select>

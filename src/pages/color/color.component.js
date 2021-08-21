@@ -30,22 +30,23 @@ const Color = props => {
 
 	return (
 		<div className='color'>
-			<div className='config'>
-				<div className='config-item'>
-					<h3 className='title'>{palette.name}</h3>
-				</div>
-				<SelectInput
-					className='config-item'					
-					value={mode}
-					onChange={ ({target}) => updateMode(target.value) }
-					name='mode'
-					options={{
-						hex: 'hex',
-						rgb: 'rgb',
-						rgba: 'rgba'
-					}}					
-				/>
-			</div>			
+			<div className='head'>
+				<span className='title'>{palette.name}</span>			
+				<div className='config'>				
+					<SelectInput
+						className='config-item'					
+						label='mode'
+						value={mode}
+						onChange={ ({target}) => updateMode(target.value) }
+						name='mode'
+						options={{
+							hex: 'hex',
+							rgb: 'rgb',
+							rgba: 'rgba'
+						}}					
+					/>
+				</div>			
+			</div>
 			<div className='palette'>
 				{
 					palette.colors.map(
