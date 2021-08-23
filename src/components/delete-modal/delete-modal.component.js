@@ -8,7 +8,7 @@ import './delete-modal.styles.scss';
 
 
 const DeleteModal = props => {
-	const { open, paletteName } = props;
+	const { open } = props;
 
 	const [title, updateTitle] = React.useState('');
 	

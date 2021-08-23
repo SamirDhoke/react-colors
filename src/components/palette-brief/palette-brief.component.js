@@ -4,9 +4,6 @@ import { setDeletingPalette, toggleDeleteModal } from '../../redux/palettes/pale
 
 import { generatePalette } from '../../utils';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 

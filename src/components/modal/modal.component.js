@@ -17,7 +17,7 @@ const Modal = props => {
 				</div>
 				<span 
 					className='modal-close-action'
-					onClick={props.handleClose}
+					onClick={ handleClose }
 				><FontAwesomeIcon icon={faTimes} /></span>
 			</div>
 		</div>

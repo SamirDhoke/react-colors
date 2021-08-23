@@ -16,15 +16,17 @@ export const selectRandomColor = (superset, subset) => {
 		SUPERSET: set of all colors
 		SUBSET: set of colors of current palette
 	*/
-	let counter = 0;
+	const isPresentInSubset = item => subset.find( subsetItem => subsetItem.name === item.name );
+
+	let counter = 0; // to prevent infinite loop
 	let index = Math.floor( Math.random() * superset.length );
 	let random =  superset[index];
-	let exists = subset.find( c => c.name === random.name );
+	let exists = isPresentInSubset(random);
 	
 	while ( exists && counter < 100 ) {
 		index = Math.floor( Math.random() * superset.length );
 		random =  superset[index];
-		exists = subset.find( c => c.name === random.name );
+		exists = isPresentInSubset(random);
 		counter = counter + 1;
 	}
 	

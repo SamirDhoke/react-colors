@@ -4,7 +4,6 @@ import SliderInput from '../../components/slider-input/slider-input.component';
 import SelectInput from '../../components/select-input/select-input.component';
 import { selectActivePalette } from '../../redux/palettes/palettes.selectors';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import './palette.styles.scss';
 
 const Palette = props => {

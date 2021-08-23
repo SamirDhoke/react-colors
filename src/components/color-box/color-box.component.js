@@ -1,5 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { ColorName, ColorCode, ViewButton, DeleteButton } from './color-box.styled';
 import './color-box.styles.scss';
 
 const ColorBox = props => {
@@ -39,21 +40,23 @@ const ColorBox = props => {
 					style={{ backgroundColor: color.color }}
 				/>
 				<div className='color-info'>
-					{ !singleColor && <span className='name'>{ color.name }</span> }	
-					<span className='code'>{ color[mode] }</span>						
+					{ !singleColor && <ColorName className='name' color={color.color}>{ color.name }</ColorName> }	
+					<ColorCode className='code' color={color.color}>{ color[mode] }</ColorCode>
 				</div>				
 				<div className='color-actions'>
 					{
-						editable && <span 
+						editable && <ViewButton 
 							className='view'
+							color={color.color}
 							onClick={ goToColor }
-						>view</span>
+						>view</ViewButton>
 					}
 					{
-						deletable && <span 
+						deletable && <DeleteButton
 							className='delete'
+							color={color.color}
 							onClick={ deleteColor }
-						>delete</span>
+						>delete</DeleteButton>
 					}
 				</div>				
 				{ copied && <div className='copied-overlay'><span className='copied-text'>copied</span></div> }

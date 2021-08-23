@@ -26,7 +26,7 @@ const Color = props => {
 			...palette,
 			colors: convertColorsMapToArray(palette.colors, color)
 		});		
-	}, [props.colors]);	
+	}, [props.colors, props.match.params.id]);	
 
 	return (
 		<div className='color'>
